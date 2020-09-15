@@ -1,0 +1,36 @@
+.container {
+  height:190px;
+  padding-top:15%;
+  padding-left:30%;
+  padding-right:15px;
+}
+#st-box {
+  float:left;
+  width:400px;
+  height:228px;
+  background-color:white;
+  border:solid black;
+}
+#nd-box {
+  float:left;
+  width:400px;
+  height:228px;
+  background-color:white;
+  border:solid black;
+  margin-left:20px;
+}
+#rd-box {
+  float:right;
+  width:180px;
+  height:160px;
+  background-color:white;
+  border:solid black;
+}
+h1 {
+  color:Green;
+}
+
+
+.home-btn{
+  width: 400px;
+}

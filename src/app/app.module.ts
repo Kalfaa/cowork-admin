@@ -16,13 +16,16 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {LoginComponent} from "./login/login.component";
 import { HomeComponent } from './home/home.component';
+import { CreateReservationComponent } from './create-reservation/create-reservation.component';
+import { EditReservationComponent } from './edit-reservation/edit-reservation.component';
+import {JwtInterceptor} from "./helpers/JWTInterceptor";
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent
+    AppComponent,LoginComponent, HomeComponent, CreateReservationComponent, EditReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { HomeComponent } from './home/home.component';
     MatCardModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
