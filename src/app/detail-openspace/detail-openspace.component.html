@@ -1,0 +1,78 @@
+<h1>Nom de l'openspace</h1>
+<div style="width: 20%;">The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+              bred for hunting.</div>
+
+<div style="width: 500px">
+<h2>Room</h2>
+<div *ngIf="getRooms().length>0; then thenBlock1 else elseBlock2;"></div>
+        <ng-template #thenBlock1>
+
+<li *ngFor="let room of getRooms(); let i = index">
+
+ <mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{room.name}}
+      </mat-panel-title>
+      <mat-panel-description style="flex-grow: 0">
+      Voir plus
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+   <mat-card class="example-card">
+     <mat-card-header>
+       <mat-card-title>Nom de la salle</mat-card-title>
+       <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+     </mat-card-header>
+     <img mat-card-image src="assets/cowk.jpg" alt="Photo of a Shiba Inu">
+     <mat-card-content>
+       <p>
+        {{ room.description }}
+       </p>
+     </mat-card-content>
+   </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
+  </li>
+  </ng-template>
+  <ng-template #elseBlock2>
+          Cet openspace n'a pas encore de salle reservable.
+   </ng-template>
+   <button mat-button (click)="openDialog()">Ajouter une salle !</button>
+</div>
+
+<h2>Tools</h2>
+<div *ngIf="getTools().length>0; then thenBlock11 else elseBlock22;"></div>
+        <ng-template #thenBlock11>
+<table mat-table [dataSource]="getTools()" class="mat-elevation-z8">
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</ng-template>
+  <ng-template #elseBlock22>
+          Cet openspace n'a pas encore d'outil reservable.
+   </ng-template>
+   <br>
+ <form [formGroup]="form" (ngSubmit)="createTool()">
+  <mat-form-field appearance="fill" class="name-input">
+    <mat-label>Nom</mat-label>
+    <input matInput  formControlName="name">
+  </mat-form-field>
+  <button mat-button> Ajouter un outil !</button>
+  </form>
+
+
+
+
+
+

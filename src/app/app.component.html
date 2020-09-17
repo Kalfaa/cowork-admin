@@ -15,9 +15,9 @@
     <mat-nav-list>
         <div *ngIf="isLogged(); then thenBlock1 else elseBlock2;"></div>
         <ng-template #thenBlock1>
-        <a mat-list-item href="/reservation">Creer une nouvelle Reservation</a>
-        <a mat-list-item href="">Mes réservation</a>
-        <a mat-list-item href="#">Mon compte</a></ng-template>
+        <a mat-list-item href="/create-openspace">Ajouter un open-space</a>
+        <a mat-list-item href="/edit-openspace">Modifier un open-space</a>
+        </ng-template>
         <ng-template #elseBlock2>
         <a mat-list-item href="/login">Login</a>
         <a mat-list-item href="/register">Register</a>

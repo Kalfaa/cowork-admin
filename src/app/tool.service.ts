@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {OpenSpace, User} from "./interface/login";
+import {OpenSpace, Room, Tool, User} from "./interface/login";
 import {environment} from "../environments/environment";
 import {map} from "rxjs/internal/operators";
 import {HttpClient} from "@angular/common/http";
@@ -7,21 +7,20 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class OpenSpaceService {
+export class ToolService {
 
   constructor(private http: HttpClient) { }
 
-
-  post(name,description){
-    return this.http.post<OpenSpace>(`${environment.apiUrl}/openspace/`, { name, description})
+ /* post(name,openSpace){
+    return this.http.post<Tool>(`${environment.apiUrl}/tool/`, {name,openSpace})
       .pipe(map(resp => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         console.log(resp);
   }))
-  }
+  }*/
 
   read(){
-    return this.http.get<OpenSpace[]>(`${environment.apiUrl}/openspace/`)
+    return this.http.get<Tool[]>(`${environment.apiUrl}/tool/`)
       .pipe(map(resp => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         return resp;
@@ -29,19 +28,11 @@ export class OpenSpaceService {
   }
 
   readOne(id){
-    return this.http.get<OpenSpace>(`${environment.apiUrl}/openspace/${id}`)
+    return this.http.get<Tool>(`${environment.apiUrl}/tool/${id}`)
       .pipe(map(resp => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         return resp;
       }));
-  }
-
-  addTool(name,openSpaceId){
-    return this.http.post<OpenSpace>(`${environment.apiUrl}/openspace/${openSpaceId}/addTool`, {name})
-      .pipe(map(resp => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log(resp);
-      }))
   }
 
 

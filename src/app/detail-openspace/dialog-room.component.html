@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Install Angular</h2>
+ <form [formGroup]="form">
+<mat-dialog-content class="mat-typography">
+<h1>Ajout d'une salle</h1>
+ <mat-card-content>
+
+  <mat-form-field appearance="fill" class="name-input">
+    <mat-label>Nom</mat-label>
+    <input matInput  formControlName="name">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  </mat-card-content>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="form" cdkFocusInitial>Ajouter la salle</button>
+</mat-dialog-actions>
+  </form>
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

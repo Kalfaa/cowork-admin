@@ -19,13 +19,19 @@ import {MatCardModule} from "@angular/material/card";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {LoginComponent} from "./login/login.component";
 import { HomeComponent } from './home/home.component';
-import { CreateReservationComponent } from './create-reservation/create-reservation.component';
-import { EditReservationComponent } from './edit-reservation/edit-reservation.component';
+import { CreateReservationComponent } from './create-openspace/create-reservation.component';
+import { EditReservationComponent } from './edit-openspace/edit-reservation.component';
 import {JwtInterceptor} from "./helpers/JWTInterceptor";
+import {MatTableModule} from "@angular/material/table";
+import { DetailOpenspaceComponent } from './detail-openspace/detail-openspace.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
+
+import {MatDialogModule} from '@angular/material/dialog';
+import {DialogRoomComponent} from "./detail-openspace/dialog-room.component";
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent, CreateReservationComponent, EditReservationComponent
+    AppComponent,LoginComponent, HomeComponent, CreateReservationComponent, EditReservationComponent, DetailOpenspaceComponent,DialogRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,10 @@ import {JwtInterceptor} from "./helpers/JWTInterceptor";
     MatNativeDateModule,
     MatSelectModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatDialogModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]
