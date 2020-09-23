@@ -1,4 +1,4 @@
-<h1>Nom de l'openspace</h1>
+<h1>{{openSpace.name}}</h1>
 <div style="width: 20%;">The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
               A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
               bred for hunting.</div>
@@ -70,6 +70,10 @@
   </mat-form-field>
   <button mat-button> Ajouter un outil !</button>
   </form>
+
+  <div style="display: inline-block;"><mat-icon style="transform: scale(4);margin-left: 30px;">laptop</mat-icon></div> <div style="display: inline-block;margin-left: 50px;"><br><span style="margin-left: 28px;">{{sortedTool.laptops.length}}</span><br><button mat-raised-button (click)="addLaptop()" color="primary"><mat-icon>library_add</mat-icon></button></div>
+  <div style="display: inline-block;"><mat-icon style="transform: scale(4);margin-left: 40px;">local_printshop</mat-icon></div> <div style="display: inline-block;margin-left: 50px;"><br><span style="margin-left: 28px;">{{sortedTool.printers.length}}</span><br><button mat-raised-button (click)="addPrinter()" color="primary"><mat-icon>library_add</mat-icon></button></div>
+
 
 
 

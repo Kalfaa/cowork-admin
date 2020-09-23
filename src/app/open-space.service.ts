@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {OpenSpace, User} from "./interface/login";
+import {OpenSpace, ToolType, User} from "./interface/login";
 import {environment} from "../environments/environment";
 import {map} from "rxjs/internal/operators";
 import {HttpClient} from "@angular/common/http";
@@ -36,8 +36,8 @@ export class OpenSpaceService {
       }));
   }
 
-  addTool(name,openSpaceId){
-    return this.http.post<OpenSpace>(`${environment.apiUrl}/openspace/${openSpaceId}/addTool`, {name})
+  addTool(name,openSpaceId,type=ToolType.TOOL){
+    return this.http.post<OpenSpace>(`${environment.apiUrl}/openspace/${openSpaceId}/addTool`, {name,type})
       .pipe(map(resp => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         console.log(resp);

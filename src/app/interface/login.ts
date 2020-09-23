@@ -27,4 +27,18 @@ export class Room {
 export class Tool {
   id: string;
   name: string;
+  type:ToolType;
+}
+
+export class SortedTool{
+  laptops:Tool[];
+  printers:Tool[];
+  others:Tool[]
+}
+
+
+export enum ToolType {
+  TOOL = "TOOL",
+  PRINTER = "PRINTER",
+  LAPTOP ="LAPTOP"
 }
