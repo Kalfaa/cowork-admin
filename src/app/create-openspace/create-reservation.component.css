@@ -1,4 +1,8 @@
-.name-input{
-  margin-left: 20%;
-  margin-right: 5%;
+.main {
+  margin-left: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
+
+

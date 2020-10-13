@@ -1,14 +1,154 @@
-<h1>Ajout d'un open space</h1>
- <mat-card-content>
+<div class="main">
+
+<h1 style="margin-top:1%;">Ajout d'un open space</h1>
     <form [formGroup]="form" (ngSubmit)="createOpen()">
-  <mat-form-field appearance="fill" class="name-input">
-    <mat-label>Nom</mat-label>
-    <input matInput  formControlName="name">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
+    <div>
+            <mat-form-field appearance="fill" class="name-input">
+             <mat-label>Nom</mat-label>
+             <input matInput  formControlName="name">
+           </mat-form-field>
+           </div>
+  <div>
+    <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
     <textarea matInput formControlName="description"></textarea>
-  </mat-form-field>
-  <button mat-raised-button color="primary">Creer un open-space</button>
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+  <div style="margin-top: 2%;width: 2%;"><label>Lundi</label> </div>
+    <mat-form-field appearance="fill">
+    <mat-label>Ouverture</mat-label>
+      <mat-select [(value)]="openHours.monday.start">
+        <mat-option [value]="hour" *ngFor="let hour of hourArray">{{hour}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+        <mat-form-field appearance="fill">
+        <mat-label>Fermeture</mat-label>
+          <mat-select [(value)]="openHours.monday.end">
+            <mat-option [value]="hour" *ngFor="let hour of endValue(openHours.monday.start)">{{hour}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div>
+
+
+
+
+    <div style="display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+
+
+    <div style="margin-top: 2%;width: 2%;"><label>Mardi</label> </div>
+      <mat-form-field appearance="fill">
+      <mat-label>Ouverture</mat-label>
+      <mat-select [(value)]="openHours.tuesday.start">
+          <mat-option [value]="hour" *ngFor="let hour of hourArray">{{hour}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+          <mat-form-field appearance="fill">
+          <mat-label>Fermeture</mat-label>
+          <mat-select [(value)]="openHours.tuesday.end">
+              <mat-option [value]="hour" *ngFor="let hour of endValue(openHours.tuesday.start)">{{hour}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+
+        <div style="display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+
+
+        <div style="margin-top: 2%;width: 2%;"><label>Mercredi</label> </div>
+          <mat-form-field appearance="fill">
+          <mat-label>Ouverture</mat-label>
+      <mat-select [(value)]="openHours.wednesday.start">
+              <mat-option  [value]="hour" *ngFor="let hour of hourArray">{{hour}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+              <mat-form-field appearance="fill">
+              <mat-label>Fermeture</mat-label>
+              <mat-select [(value)]="openHours.wednesday.end">
+                  <mat-option  [value]="hour" *ngFor="let hour of endValue(openHours.wednesday.start)">{{hour}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+
+
+            <div style="display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+
+
+            <div style="margin-top: 2%;width: 2%;"><label>Jeudi</label> </div>
+              <mat-form-field appearance="fill">
+              <mat-label>Ouverture</mat-label>
+              <mat-select [(value)]="openHours.thursday.start">
+                  <mat-option [value]="hour" *ngFor="let hour of hourArray">{{hour}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+                  <mat-form-field appearance="fill">
+                  <mat-label>Fermeture</mat-label>
+                  <mat-select [(value)]="openHours.thursday.end">
+                      <mat-option  [value]="hour" *ngFor="let hour of endValue(openHours.thursday.start)">{{hour}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+
+
+                <div style="display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+
+
+                <div style="margin-top: 2%;width: 2%;"><label>Vendredi</label> </div>
+                  <mat-form-field appearance="fill">
+                  <mat-label>Ouverture</mat-label>
+                  <mat-select [(value)]="openHours.friday.start">
+                      <mat-option [value]="hour" *ngFor="let hour of hourArray">{{hour}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                      <mat-form-field appearance="fill">
+                      <mat-label>Fermeture</mat-label>
+                      <mat-select [(value)]="openHours.friday.end">
+                          <mat-option [value]="hour" *ngFor="let hour of endValue(openHours.friday.start)">{{hour}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+
+                    <div style="display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+
+
+                    <div style="margin-top: 2%;width: 2%;"><label>Samedi</label> </div>
+                      <mat-form-field appearance="fill">
+                      <mat-label>Ouverture</mat-label>
+                      <mat-select [(value)]="openHours.saturday.start">
+                          <mat-option [value]="hour" *ngFor="let hour of hourArray">{{hour}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                          <mat-form-field appearance="fill">
+                          <mat-label>Fermeture</mat-label>
+                          <mat-select [(value)]="openHours.saturday.end">
+                              <mat-option [value]="hour" *ngFor="let hour of endValue(openHours.saturday.start)">{{hour}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <div style="display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+                          <div style="margin-top: 2%;width: 2%;"><label>Dimanche</label> </div>
+                            <mat-form-field appearance="fill">
+                            <mat-label>Ouverture</mat-label>
+                            <mat-select [(value)]="openHours.sunday.start">
+                                <mat-option [value]="hour" *ngFor="let hour of hourArray">{{hour}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                <mat-label>Fermeture</mat-label>
+                                <mat-select [(value)]="openHours.sunday.end">
+                                    <mat-option [value]="hour" *ngFor="let hour of endValue(openHours.sunday.start)">{{hour}}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                          </div>
+
+
+  <button mat-raised-button color="primary" style="margin-left: 42%;">Creer un open-space</button>
+
+
   </form>
-  </mat-card-content>
+</div>

@@ -29,6 +29,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogRoomComponent} from "./detail-openspace/dialog-room.component";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {ErrorInterceptor} from "./helpers/ErrorInterceptor";
 @NgModule({
   declarations: [
     AppComponent,LoginComponent, HomeComponent, CreateReservationComponent, EditReservationComponent, DetailOpenspaceComponent,DialogRoomComponent
@@ -53,9 +55,11 @@ import {DialogRoomComponent} from "./detail-openspace/dialog-room.component";
     HttpClientModule,
     MatTableModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {OpenSpaceService} from "../open-space.service";
 import {first} from "rxjs/internal/operators";
-import {OpenSpace, SortedTool, Tool, ToolType} from "../interface/login";
+import {HourRange, OpenHours, OpenSpace, SortedTool, Tool, ToolType} from "../interface/login";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogRoomComponent} from "./dialog-room.component";
 import {RoomService} from "../room.service";
@@ -19,6 +19,8 @@ export class DetailOpenspaceComponent implements OnInit {
   panelOpenState = false;
   openSpace: OpenSpace;
   tools;
+  hourArray = ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'];
+  openHours:OpenHours = new OpenHours();
   sortedTool:SortedTool;
   form: FormGroup;
   displayedColumns: string[] = ['name'];
@@ -36,9 +38,12 @@ export class DetailOpenspaceComponent implements OnInit {
       this.openSpaceService.readOne(this.openSpaceId).pipe(first())
         .subscribe(
           data => {
+
             console.log(data);
             //this.dataSource.data=data as OpenSpace[]
             this.openSpace = data;
+            console.log( OpenHours.convertHourRangeToString(data.openHours));
+            this.openHours = OpenHours.convertHourRangeToString(data.openHours);
             this.sortedTool = this.sortTool(this.openSpace.tools);
           },
           error => {
@@ -165,4 +170,37 @@ export class DetailOpenspaceComponent implements OnInit {
           console.log('eheheh');
         });
   }
+
+  endValue(string){
+    for(let i =0;i<this.hourArray.length;i++){
+      if(parseInt(string) === parseInt(this.hourArray[i])){
+        return this.hourArray.slice(i+1);
+      }
+    }
+  }
+
+  changeHours() {
+    this.openSpaceService.changeHours(this.openSpaceId,this.openHours).pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.openSpaceService.readOne(this.openSpaceId).pipe(first())
+            .subscribe(
+              data => {
+                console.log(data);
+                //this.dataSource.data=data as OpenSpace[]
+                this.openSpace = data;
+                this.sortedTool = this.sortTool(this.openSpace.tools);
+              },
+              error => {
+                console.log(error);
+              });
+        },
+        error => {
+          console.log(error);
+          console.log('eheheh');
+        });
+  }
+
+
 }
