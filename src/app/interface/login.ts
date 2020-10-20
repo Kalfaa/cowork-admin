@@ -18,6 +18,16 @@ export class OpenSpace {
   openHours:OpenHours;
 }
 
+export class WorkEvent {
+  id:string;
+  name:string;
+  image:string;
+  description:string;
+  date:Date;
+  openSpace:any;
+}
+
+
 
 export class Room {
   id: string;
@@ -97,4 +107,6 @@ export class OpenHours{
     res.sunday = HourRange.convertHourRangeToString(openHours.sunday);
     return res;
   }
+
+
 }

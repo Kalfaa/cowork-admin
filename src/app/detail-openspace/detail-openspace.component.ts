@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {OpenSpaceService} from "../open-space.service";
 import {first} from "rxjs/internal/operators";
-import {HourRange, OpenHours, OpenSpace, SortedTool, Tool, ToolType} from "../interface/login";
+import {HourRange, OpenHours, OpenSpace, SortedTool, Tool, ToolType, WorkEvent} from "../interface/login";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogRoomComponent} from "./dialog-room.component";
 import {RoomService} from "../room.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToolService} from "../tool.service";
+import {AddEventComponent} from "./add-event.component";
+import {EventService} from "../event.service";
 
 @Component({
   selector: 'app-detail-openspace',
@@ -23,8 +25,9 @@ export class DetailOpenspaceComponent implements OnInit {
   openHours:OpenHours = new OpenHours();
   sortedTool:SortedTool;
   form: FormGroup;
+  events:WorkEvent[] = [];
   displayedColumns: string[] = ['name'];
-  constructor(private fb: FormBuilder,private route: ActivatedRoute, private openSpaceService: OpenSpaceService, public dialog: MatDialog,public roomService:RoomService,public toolService:ToolService) {
+  constructor(private fb: FormBuilder,private route: ActivatedRoute, private openSpaceService: OpenSpaceService, public dialog: MatDialog,public roomService:RoomService,public toolService:ToolService,public eventService:EventService) {
   }
 
   ngOnInit(): void {
@@ -45,6 +48,15 @@ export class DetailOpenspaceComponent implements OnInit {
             console.log( OpenHours.convertHourRangeToString(data.openHours));
             this.openHours = OpenHours.convertHourRangeToString(data.openHours);
             this.sortedTool = this.sortTool(this.openSpace.tools);
+            this.eventService.readForOpenSpace(this.openSpaceId).pipe(first())
+              .subscribe(
+                data => {
+                  this.events = data;
+                },
+                error => {
+                  console.log(error);
+                  console.log('eheheh');
+                });
           },
           error => {
             console.log(error);
@@ -58,7 +70,7 @@ export class DetailOpenspaceComponent implements OnInit {
 
   getTools() {
     return (this.openSpace &&this.sortedTool.others) ? this.sortedTool.others : []
-  }
+}
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogRoomComponent);
@@ -80,6 +92,25 @@ export class DetailOpenspaceComponent implements OnInit {
                 error => {
                   console.log(error);
                 });
+          },
+          error => {
+            console.log(error);
+            console.log('eheheh');
+          });
+    });
+
+  }
+
+  openEventDialog() {
+    const dialogRef = this.dialog.open(AddEventComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+
+      this.eventService.post(result.form.controls.name.value,result.form.controls.description.value,this.openSpaceId,result.form.controls.date.value,result.file).pipe(first())
+        .subscribe(
+          data => {
+            console.log(data);
           },
           error => {
             console.log(error);

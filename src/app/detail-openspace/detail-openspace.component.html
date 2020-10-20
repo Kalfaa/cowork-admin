@@ -1,15 +1,49 @@
 <div style="margin-left :5%">
 <h1>{{openSpace.name}}</h1>
-<div style="width: 20%;">The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.</div>
+<h2>Evenement</h2>
+
+
+<div *ngIf="events.length>0; then event1 else event2;"></div>
+
+
+<div style="width: 40%;">
+        <ng-template #event1>
+<section class="carousel">
+            <ul class="carousel-items">
+ <div *ngFor="let event of events; let i = index">
+
+   <mat-card class="example-card">
+     <mat-card-header>
+       <mat-card-title> {{event.name}}</mat-card-title>
+     </mat-card-header>
+     <div *ngIf="event.image == ''; then img1 else img2;"></div>
+     <ng-template #img1>     <img mat-card-image   style="max-width: 200px;"  src="assets/cowk.jpg" alt="Photo of a Shiba Inu"> </ng-template>
+     <ng-template #img2>   <img mat-card-image style="max-width: 200px;" [src]="'http://localhost:3000/event/file/'+event.image" alt="Photo of a Shiba Inu">  </ng-template>
+
+     <mat-card-content>
+       <p>
+           {{event.description}}
+       </p>
+     </mat-card-content>
+   </mat-card>
+   </div>
+      </ul>
+      </section>
+        </ng-template>
+        <ng-template #event2>
+          Aucun évènement .
+        </ng-template>
+      <button mat-raised-button color="primary" (click)="openEventDialog()">Ajouter un évenement !</button>
+
+</div>
+
 
 <div style="width: 500px">
 <h2>Room</h2>
-<div *ngIf="getRooms().length>0; then thenBlock1 else elseBlock2;"></div>
+<div *ngIf="getRooms().length>0; then thenBlock1 else elseBlock2;" style="display: flex;flex-direction: row; justify-content: space-evenly;"></div>
         <ng-template #thenBlock1>
-
-<li *ngFor="let room of getRooms(); let i = index">
+<div style="display: flex;width: 1000px">
+<div *ngFor="let room of getRooms(); let i = index">
 
  <mat-accordion>
   <mat-expansion-panel (opened)="panelOpenState = true"
@@ -24,8 +58,7 @@
     </mat-expansion-panel-header>
    <mat-card class="example-card">
      <mat-card-header>
-       <mat-card-title>Nom de la salle</mat-card-title>
-       <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+       <mat-card-title> {{room.name}}</mat-card-title>
      </mat-card-header>
      <img mat-card-image src="assets/cowk.jpg" alt="Photo of a Shiba Inu">
      <mat-card-content>
@@ -36,7 +69,9 @@
    </mat-card>
   </mat-expansion-panel>
 </mat-accordion>
-  </li>
+  </div>
+  </div>
+
   </ng-template>
   <ng-template #elseBlock2>
           Cet openspace n'a pas encore de salle reservable.
@@ -44,13 +79,14 @@
    <button mat-raised-button color="primary" (click)="openDialog()">Ajouter une salle !</button>
 </div>
 
-<h2>Tools</h2>
+<h2>Outils</h2>
+<!--
 <div *ngIf="getTools().length>0; then thenBlock11 else elseBlock22;"></div>
         <ng-template #thenBlock11>
+
 <table mat-table [dataSource]="getTools()" class="mat-elevation-z8">
 
 
-  <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -64,6 +100,7 @@
           Cet openspace n'a pas encore d'outil reservable.
    </ng-template>
    <br>
+
  <form [formGroup]="form" (ngSubmit)="createTool()">
   <mat-form-field appearance="fill" class="name-input">
     <mat-label>Nom</mat-label>
@@ -71,12 +108,17 @@
   </mat-form-field>
   <button mat-button> Ajouter un outil !</button>
   </form>
+  --->
+  <label style="font-size: 130%;">  Ajoutez des ordinateurs et imprimantes pouvant être empruntés par un utilisateur : </label>
+  <br>
+
 
   <div style="display: inline-block;"><mat-icon style="transform: scale(4);margin-left: 30px;">laptop</mat-icon></div> <div style="display: inline-block;margin-left: 50px;"><br><span style="margin-left: 28px;">{{sortedTool.laptops.length}}</span><br><button mat-raised-button (click)="addLaptop()" color="primary"><mat-icon>library_add</mat-icon></button></div>
   <div style="display: inline-block;"><mat-icon style="transform: scale(4);margin-left: 40px;">local_printshop</mat-icon></div> <div style="display: inline-block;margin-left: 50px;"><br><span style="margin-left: 28px;">{{sortedTool.printers.length}}</span><br><button mat-raised-button (click)="addPrinter()" color="primary"><mat-icon>library_add</mat-icon></button></div>
 
-
+<div style="margin-top:3%;"><h2>Horaire d'ouverture de l'openspace</h2></div>
 <div style="margin-top:2%;display: flex;flex-direction: row; justify-content: space-evenly;width: 50%;">
+
   <div style="margin-top: 2%;width: 2%;"><label>Lundi</label> </div>
     <mat-form-field appearance="fill">
     <mat-label>Ouverture</mat-label>

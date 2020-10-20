@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Ajouter un évènement</h2>
+ <form [formGroup]="form">
+<mat-dialog-content class="mat-typography">
+<h1>Ajout d'une salle</h1>
+ <mat-card-content>
+  <div style="display: flex;flex-direction: column; justify-content: space-evenly;">
+  <div>
+  <mat-form-field appearance="fill" class="name-input">
+    <mat-label>Nom</mat-label>
+    <input matInput  formControlName="name">
+  </mat-form-field>
+  </div>
+  <div>
+  <mat-form-field appearance="fill">
+           <mat-label>Description</mat-label>
+           <textarea matInput formControlName="description"></textarea>
+         </mat-form-field>
+         </div>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+        <!-- #docregion toggle -->
+          <input matInput #ref [matDatepicker]="picker" [matDatepickerFilter]="myFilter" (dateChange)="orgValueChange(ref.value)" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        <!-- #enddocregion toggle -->
+        </mat-form-field>
+
+  <div class="form-group">
+      <label for="file">Ajouter une image : </label>
+      <input type="file"
+             id="file"
+             (change)="handleFileInput($event.target.files)" formControlName="file">
+  </div>
+  </div>
+  </mat-card-content>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!(this.form.controls.date.value && this.form.controls.description.value && this.form.controls.name.value)" [mat-dialog-close]="{form:form,file:fileToUpload}" cdkFocusInitial>Ajouter l'évènement</button>
+</mat-dialog-actions>
+  </form>
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

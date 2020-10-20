@@ -31,9 +31,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DialogRoomComponent} from "./detail-openspace/dialog-room.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ErrorInterceptor} from "./helpers/ErrorInterceptor";
+import {AddEventComponent} from "./detail-openspace/add-event.component";
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, HomeComponent, CreateReservationComponent, EditReservationComponent, DetailOpenspaceComponent,DialogRoomComponent
+    AppComponent,LoginComponent, HomeComponent, CreateReservationComponent, EditReservationComponent, DetailOpenspaceComponent,DialogRoomComponent,AddEventComponent
   ],
   imports: [
     BrowserModule,
