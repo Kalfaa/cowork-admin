@@ -18,7 +18,8 @@
      </mat-card-header>
      <div *ngIf="event.image == ''; then img1 else img2;"></div>
      <ng-template #img1>     <img mat-card-image   style="max-width: 200px;"  src="assets/cowk.jpg" alt="Photo of a Shiba Inu"> </ng-template>
-     <ng-template #img2>   <img mat-card-image style="max-width: 200px;" [src]="'http://localhost:3000/event/file/'+event.image" alt="Photo of a Shiba Inu">  </ng-template>
+     <ng-template #img2>
+     <img mat-card-image style="max-width: 200px;" [src]="'http://localhost:3000/event/file/'+event.image" alt="Photo of a Shiba Inu">  </ng-template>
 
      <mat-card-content>
        <p>
