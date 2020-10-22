@@ -1,6 +1,6 @@
 <div style="margin-left :5%">
 <h1>{{openSpace.name}}</h1>
-<h2>Evenement</h2>
+<h2>Evènement</h2>
 
 
 <div *ngIf="events.length>0; then event1 else event2;"></div>
@@ -10,9 +10,9 @@
         <ng-template #event1>
 <section class="carousel">
             <ul class="carousel-items">
- <div *ngFor="let event of events; let i = index">
+ <div *ngFor="let event of events; let i = index" style="margin-right: 3%;">
 
-   <mat-card class="example-card">
+   <mat-card class="example-card" style="min-width: 180px;min-height: 200px;">
      <mat-card-header>
        <mat-card-title> {{event.name}}</mat-card-title>
      </mat-card-header>
@@ -40,23 +40,14 @@
 
 
 <div style="width: 500px">
-<h2>Room</h2>
-<div *ngIf="getRooms().length>0; then thenBlock1 else elseBlock2;" style="display: flex;flex-direction: row; justify-content: space-evenly;"></div>
+<div style="margin-top: 3%;"><h2>Salles</h2></div>
+<div *ngIf="getRooms().length>0; then thenBlock1 else elseBlock2;"></div>
         <ng-template #thenBlock1>
-<div style="display: flex;width: 1000px">
-<div *ngFor="let room of getRooms(); let i = index">
+<div>
+  <section class="carousel">
+              <ul class="carousel-items">
+              <div *ngFor="let room of getRooms(); let i = index" style="margin-right: 3%;">
 
- <mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{room.name}}
-      </mat-panel-title>
-      <mat-panel-description style="flex-grow: 0">
-      Voir plus
-      </mat-panel-description>
-    </mat-expansion-panel-header>
    <mat-card class="example-card">
      <mat-card-header>
        <mat-card-title> {{room.name}}</mat-card-title>
@@ -68,9 +59,10 @@
        </p>
      </mat-card-content>
    </mat-card>
-  </mat-expansion-panel>
-</mat-accordion>
-  </div>
+     </div>
+
+   </ul>
+   </section>
   </div>
 
   </ng-template>
