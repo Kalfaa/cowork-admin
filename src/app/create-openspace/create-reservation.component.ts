@@ -30,7 +30,7 @@ export class CreateReservationComponent implements OnInit {
       return this.openSpace.post(this.form.controls.name.value, this.form.controls.description.value,this.openHours.convertHourRangeToInt()).pipe(first())
         .subscribe(
           data => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/home']);
           },
           error => {
             console.log('eheheh');
