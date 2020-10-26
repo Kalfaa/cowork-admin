@@ -33,6 +33,7 @@ export class Room {
   id: string;
   name: string;
   description: string;
+  image:string;
 }
 
 export class Tool {

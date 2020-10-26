@@ -13,11 +13,17 @@
     <textarea matInput formControlName="description"></textarea>
   </mat-form-field>
   </div>
+  <div class="form-group">
+        <label for="file">Ajouter une image : </label>
+        <input type="file"
+               id="file"
+               (change)="handleFileInput($event.target.files)" formControlName="file">
+    </div>
   </mat-card-content>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button  color="primary"  [mat-dialog-close]="form" cdkFocusInitial>Ajouter la salle</button>
+  <button mat-button mat-dialog-close>Retour</button>
+  <button mat-raised-button  color="primary"  [mat-dialog-close]="{form:form,file:fileToUpload}" cdkFocusInitial>Ajouter la salle</button>
 </mat-dialog-actions>
   </form>
 

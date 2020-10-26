@@ -52,7 +52,14 @@
      <mat-card-header>
        <mat-card-title> {{room.name}}</mat-card-title>
      </mat-card-header>
-     <img mat-card-image src="assets/cowk.jpg" alt="Photo of a Shiba Inu">
+       <div *ngIf="room.image == '' ; then ee else room2;"></div>
+          <ng-template #ee>
+          <img mat-card-image   style="max-width: 200px;"  src="assets/cowk.jpg" alt="Photo of a Shiba Inu">
+           </ng-template>
+          <ng-template #room2>
+          <img mat-card-image style="max-width: 200px;" [src]="'http://localhost:3000/event/file/'+room.image" alt="Photo of a Shiba Inu">
+          </ng-template>
+
      <mat-card-content>
        <p>
         {{ room.description }}
