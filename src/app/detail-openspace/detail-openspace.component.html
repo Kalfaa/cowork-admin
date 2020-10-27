@@ -17,9 +17,9 @@
        <mat-card-title> {{event.name}}</mat-card-title>
      </mat-card-header>
      <div *ngIf="event.image == ''; then img1 else img2;"></div>
-     <ng-template #img1>     <img mat-card-image   style="max-width: 200px;"  src="assets/cowk.jpg" alt="Photo of a Shiba Inu"> </ng-template>
+     <ng-template #img1>     <img mat-card-image   style="width: 200px;"  src="assets/cowk.jpg" alt="Photo of a Shiba Inu"> </ng-template>
      <ng-template #img2>
-     <img mat-card-image style="max-width: 200px;" [src]="'http://localhost:3000/event/file/'+event.image" alt="Photo of a Shiba Inu">  </ng-template>
+     <img mat-card-image style="width: 200px;" [src]="'http://localhost:3000/event/file/'+event.image" alt="Photo of a Shiba Inu">  </ng-template>
 
      <mat-card-content>
        <p>
@@ -39,7 +39,7 @@
 </div>
 
 
-<div style="width: 500px">
+<div>
 <div style="margin-top: 3%;"><h2>Salles</h2></div>
 <div *ngIf="getRooms().length>0; then thenBlock1 else elseBlock2;"></div>
         <ng-template #thenBlock1>
@@ -54,14 +54,15 @@
      </mat-card-header>
        <div *ngIf="room.image == '' ; then ee else room2;"></div>
           <ng-template #ee>
-          <img mat-card-image   style="max-width: 200px;"  src="assets/cowk.jpg" alt="Photo of a Shiba Inu">
+          <img mat-card-image   style="width: 350px;height: 238px;"  src="assets/cowk.jpg" alt="Photo of a Shiba Inu">
            </ng-template>
           <ng-template #room2>
-          <img mat-card-image style="max-width: 200px;" [src]="'http://localhost:3000/event/file/'+room.image" alt="Photo of a Shiba Inu">
+          <img mat-card-image style="width: 350px; height: 238px;" [src]="'http://localhost:3000/event/file/'+room.image" alt="Photo of a Shiba Inu">
           </ng-template>
 
      <mat-card-content>
-       <p>
+       <p style="min-height:100px;max-width: 300px;max-height: 100px;
+                                  overflow: auto;">
         {{ room.description }}
        </p>
      </mat-card-content>

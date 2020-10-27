@@ -13,7 +13,7 @@ export class RoomService {
 
   post(name, description, openSpace, file){
     const formData: FormData = new FormData();
-    if(file!==null){
+    if(file!==undefined){
       formData.append('file', file, file.name);
     }
     formData.append('name',name);
