@@ -39,6 +39,11 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          if(!data.user.isAdmin){
+            this.loginInvalid = true;
+            this.authService.logout();
+            return;
+          }
           this.router.navigate(['home']);
         },
         error => {

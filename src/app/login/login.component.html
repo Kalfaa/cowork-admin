@@ -5,17 +5,17 @@
       <mat-form-field class="full-width-input">
         <input matInput placeholder="Nom de compte" formControlName="username" required>
         <mat-error>
-          Please provide a valid email address
+          Veuillez rentrer un nom de compte valide
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width-input">
         <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
         <mat-error>
-          Please provide a valid password
+          Veuillez rentrer un mot de passe valide
         </mat-error>
       </mat-form-field>
             <mat-error *ngIf="loginInvalid">
-              The username and password were not recognised
+              Nom de compte ou mot de passe erroné
             </mat-error>
       <button mat-raised-button color="primary">Login</button>
     </form>
